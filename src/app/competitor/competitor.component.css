@@ -1,0 +1,9 @@
+/* .card {
+  width: 400px;
+} */
+
+.mat-card-image {
+  max-height: 200%;
+  width: auto;
+
+}
