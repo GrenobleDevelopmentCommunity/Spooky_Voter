@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   competitor1: Competitor;
   competitor2: Competitor;
   showCompetitors = false;
+  chooseCategory = false;
+  currentCategory: string;
 
   constructor(private uuidService: UuidService, private competitorsService: CompetitorsService) { }
 
@@ -19,19 +21,24 @@ export class AppComponent implements OnInit {
     if (!this.uuidService.haveUuid()) {
       this.uuidService.setUuid();
     }
-    this.initCompetitors();
+    this.categoryChoise();
+  }
+
+  categoryChoise() {
+    this.chooseCategory = true;
   }
 
 
-  initCompetitors() {
-
+  initCompetitors(category: string) {
+    this.currentCategory = category;
     Promise.all([
-      this.competitorsService.getNextCompetitor(),
-      this.competitorsService.getNextCompetitor()
+      this.competitorsService.getNextCompetitor(this.currentCategory),
+      this.competitorsService.getNextCompetitor(this.currentCategory)
     ]).then(
       (competitors: Competitor[]) => {
         this.competitor1 = competitors[0];
         this.competitor2 = competitors[1];
+        this.chooseCategory = false;
         this.showCompetitors = true;
       }
     );
@@ -41,9 +48,9 @@ export class AppComponent implements OnInit {
   // TODO: Merge both vote methods
   voteUp() {
     this.competitorsService.vote(this.competitor1);
-    if (this.competitorsService.hasNextCompetitor()) {
+    if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
       // this.competitor2 = this.competitorsService.getNextCompetitor();
-      this.competitorsService.getNextCompetitor().then(
+      this.competitorsService.getNextCompetitor(this.currentCategory).then(
         (comp: Competitor) => this.competitor2 = comp
       );
     }
@@ -52,9 +59,9 @@ export class AppComponent implements OnInit {
 
   voteDown() {
     this.competitorsService.vote(this.competitor2);
-    if (this.competitorsService.hasNextCompetitor()) {
+    if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
       // this.competitor1 = this.competitorsService.getNextCompetitor();
-      this.competitorsService.getNextCompetitor().then(
+      this.competitorsService.getNextCompetitor(this.currentCategory).then(
         (comp: Competitor) => this.competitor1 = comp
       );
     }

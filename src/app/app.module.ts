@@ -6,11 +6,13 @@ import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
 import { CompetitorComponent } from './competitor/competitor.component';
 import { MatButtonModule } from '@angular/material';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompetitorComponent
+    CompetitorComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

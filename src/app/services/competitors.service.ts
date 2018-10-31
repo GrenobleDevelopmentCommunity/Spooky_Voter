@@ -26,7 +26,7 @@ export class CompetitorsService {
     console.log(`Voted for ${nickname}`);
   }
 
-  getNextCompetitor(): Promise<Competitor> {
+  getNextCompetitor(category: string): Promise<Competitor> {
     const comp = this.COMPETITORS[this.index];
     this.index++;
     // TODO: remove this line :
@@ -41,7 +41,7 @@ export class CompetitorsService {
     );
   }
 
-  hasNextCompetitor(): boolean {
+  hasNextCompetitor(category: string): boolean {
     return this.index < this.COMPETITORS.length;
   }
 }
