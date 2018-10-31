@@ -10,7 +10,7 @@ export class Competitor {
 })
 export class CompetitorsService {
 
-  COMPETITORS: Competitor[] = [
+  MALE_COMPETITORS: Competitor[] = [
     // tslint:disable:max-line-length
     { nickname: 'Vasyl', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
     { nickname: 'Max', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
@@ -18,30 +18,53 @@ export class CompetitorsService {
     { nickname: 'Anton', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
     { nickname: 'Raph', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
   ];
-  index = 0;
+  male_index = 0;
+
+  FEMALE_COMPETITORS: Competitor[] = [
+    // tslint:disable:max-line-length
+    { nickname: 'Oriane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
+    { nickname: 'Heloise', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
+    { nickname: 'Margo', picture_link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg' },
+    { nickname: 'Marjo', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
+    { nickname: 'Romane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
+  ];
+  female_index = 0;
 
   constructor() { }
 
+  // TODO: Make it async
   vote({ nickname }: Competitor): void {
     console.log(`Voted for ${nickname}`);
   }
 
   getNextCompetitor(category: string): Promise<Competitor> {
-    const comp = this.COMPETITORS[this.index];
-    this.index++;
-    // TODO: remove this line :
-    if (this.index === this.COMPETITORS.length) {
-      this.index = 0;
+    if (category === 'male') {
+      const comp = this.MALE_COMPETITORS[this.male_index];
+      this.male_index++;
+      return new Promise<Competitor>((resolve, reject) => {
+        setTimeout(() => {
+          resolve(comp);
+        }, 1000);
+      }
+      );
+    } else {
+      const comp = this.FEMALE_COMPETITORS[this.female_index];
+      this.female_index++;
+      return new Promise<Competitor>((resolve, reject) => {
+        setTimeout(() => {
+          resolve(comp);
+        }, 1000);
+      }
+      );
     }
-    return new Promise<Competitor>((resolve, reject) => {
-      setTimeout(() => {
-        resolve(comp);
-      }, 1000);
-    }
-    );
   }
 
+  // TODO: Make it async
   hasNextCompetitor(category: string): boolean {
-    return this.index < this.COMPETITORS.length;
+    if (category === 'male') {
+      return this.male_index < this.MALE_COMPETITORS.length;
+    } else {
+      return this.female_index < this.FEMALE_COMPETITORS.length;
+    }
   }
 }

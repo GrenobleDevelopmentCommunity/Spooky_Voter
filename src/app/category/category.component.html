@@ -1,6 +1,6 @@
-<button #maleButton mat-button (click)="initMaleVote($event)">
+<button #maleButton mat-button (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
   MALE
 </button>
-<button #femaleButton mat-button (click)="initFemaleVote($event)">
+<button #femaleButton mat-button (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
   FEMALE
 </button>
