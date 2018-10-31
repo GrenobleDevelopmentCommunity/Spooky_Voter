@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   showCompetitors = false;
   chooseCategory = false;
   currentCategory: string;
+  voting: boolean;
 
   constructor(private uuidService: UuidService,
     private competitorsService: CompetitorsService,
@@ -43,6 +44,7 @@ export class AppComponent implements OnInit {
         this.competitor2 = competitors[1];
         this.chooseCategory = false;
         this.showCompetitors = true;
+        this.voting = false;
       }
     );
   }
@@ -50,29 +52,39 @@ export class AppComponent implements OnInit {
 
   // TODO: Merge both vote methods
   voteUp() {
-    this.competitorsService.vote(this.competitor1); // TODO: Rendre cet appel async
-    if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
-      // this.competitor2 = this.competitorsService.getNextCompetitor();
-      this.competitorsService.getNextCompetitor(this.currentCategory).then(
-        (comp: Competitor) => this.competitor2 = comp
-      );
-    } else {
-      this.endVote();
+    if (!this.voting) {
+      this.voting = !this.voting;
+      this.competitorsService.vote(this.competitor1); // TODO: Rendre cet appel async
+      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
+        // this.competitor2 = this.competitorsService.getNextCompetitor();
+        this.competitorsService.getNextCompetitor(this.currentCategory).then(
+          (comp: Competitor) => {
+            this.competitor2 = comp;
+            this.voting = !this.voting;
+          }
+        );
+      } else {
+        this.endVote();
+      }
     }
-    // TODO: Add finishing state or return to men/women choice
   }
 
   voteDown() {
-    this.competitorsService.vote(this.competitor2); // TODO: Rendre cet appel async
-    if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
-      // this.competitor1 = this.competitorsService.getNextCompetitor();
-      this.competitorsService.getNextCompetitor(this.currentCategory).then(
-        (comp: Competitor) => this.competitor1 = comp
-      );
-    } else {
-      this.endVote();
+    if (!this.voting) {
+      this.voting = !this.voting;
+      this.competitorsService.vote(this.competitor2); // TODO: Rendre cet appel async
+      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
+        // this.competitor1 = this.competitorsService.getNextCompetitor();
+        this.competitorsService.getNextCompetitor(this.currentCategory).then(
+          (comp: Competitor) => {
+            this.competitor1 = comp;
+            this.voting = !this.voting;
+          }
+        );
+      } else {
+        this.endVote();
+      }
     }
-    // TODO: Add finishing state or return to men/women choice
   }
 
   endVote() {

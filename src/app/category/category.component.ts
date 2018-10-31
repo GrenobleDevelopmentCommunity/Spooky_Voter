@@ -10,6 +10,8 @@ export class CategoryComponent implements OnInit {
 
   disableMaleButton: boolean;
   disableFemaleButton: boolean;
+  emiting = false;
+
   @Output() categoryChoice = new EventEmitter<string>();
 
   constructor(private categoryService: CategoryService) { }
@@ -17,16 +19,22 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.disableFemaleButton = this.categoryService.isFemaleVoteFinished();
     this.disableMaleButton = this.categoryService.isMaleVoteFinished();
+
+    // TODO: if both true show end message
   }
 
   initMaleVote(event: Event) {
-    console.log('initMaleVote');
-    this.categoryChoice.emit('male');
+    if (!this.emiting) {
+      console.log('initMaleVote');
+      this.categoryChoice.emit('male');
+    }
   }
 
   initFemaleVote(event: Event) {
-    console.log('initFemaleVote');
-    this.categoryChoice.emit('female');
+    if (!this.emiting) {
+      console.log('initFemaleVote');
+      this.categoryChoice.emit('female');
+    }
   }
 
 }
