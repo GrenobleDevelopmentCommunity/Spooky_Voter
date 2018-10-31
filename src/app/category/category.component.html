@@ -1,6 +1,24 @@
-<button #maleButton mat-button (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
-  MALE
-</button>
-<button #femaleButton mat-button (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
-  FEMALE
-</button>
+<div *ngIf="!(disableMaleButton && disableFemaleButton)">
+  <mat-toolbar color="primary">Choose a category</mat-toolbar>
+  <div>
+    <button class="male" mat-raised-button color="primary" (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
+      MALE
+    </button>
+  </div>
+  <div>
+    <button class="female" mat-raised-button color="accent" (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
+      FEMALE
+    </button>
+  </div>
+</div>
+
+<div *ngIf="(disableMaleButton && disableFemaleButton)">
+  <mat-toolbar color="primary">Thanks for your votes</mat-toolbar>
+  <mat-card>
+    <mat-card-content>
+      <img style="width: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Competitor, CompetitorsService } from '../services/competitors.service';
 
 @Component({
@@ -6,8 +6,7 @@ import { Competitor, CompetitorsService } from '../services/competitors.service'
   templateUrl: './competitor.component.html',
   styleUrls: ['./competitor.component.css']
 })
-export class CompetitorComponent implements OnInit, OnDestroy {
-
+export class CompetitorComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input() competitor: Competitor;
 
@@ -20,5 +19,10 @@ export class CompetitorComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log('OnDestroy');
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.competitor);
+  }
+
 
 }

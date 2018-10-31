@@ -8,13 +8,22 @@ export class CategoryService {
   maleVoteDone = false;
   femaleVoteDone = false;
 
-  constructor() { }
+  constructor() {
+    if (!!localStorage.getItem('male')) {
+      this.maleVoteDone = true;
+    }
+    if (!!localStorage.getItem('female')) {
+      this.femaleVoteDone = true;
+    }
+  }
 
   finishMaleVote() {
+    localStorage.setItem('male', 'true');
     this.maleVoteDone = true;
   }
 
   finishFemaleVote() {
+    localStorage.setItem('female', 'true');
     this.femaleVoteDone = true;
   }
 

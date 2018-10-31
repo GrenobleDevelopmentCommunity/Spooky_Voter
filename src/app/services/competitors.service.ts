@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { compileComponentFromMetadata } from '@angular/compiler';
 
 export class Competitor {
   nickname: string;
@@ -10,6 +11,7 @@ export class Competitor {
 })
 export class CompetitorsService {
 
+  // TODO: load data from server
   MALE_COMPETITORS: Competitor[] = [
     // tslint:disable:max-line-length
     { nickname: 'Vasyl', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
@@ -37,26 +39,16 @@ export class CompetitorsService {
     console.log(`Voted for ${nickname}`);
   }
 
-  getNextCompetitor(category: string): Promise<Competitor> {
+  getNextCompetitor(category: string): Competitor {
+    let comp: Competitor;
     if (category === 'male') {
-      const comp = this.MALE_COMPETITORS[this.male_index];
+      comp = this.MALE_COMPETITORS[this.male_index];
       this.male_index++;
-      return new Promise<Competitor>((resolve, reject) => {
-        setTimeout(() => {
-          resolve(comp);
-        }, 1000);
-      }
-      );
     } else {
-      const comp = this.FEMALE_COMPETITORS[this.female_index];
+      comp = this.FEMALE_COMPETITORS[this.female_index];
       this.female_index++;
-      return new Promise<Competitor>((resolve, reject) => {
-        setTimeout(() => {
-          resolve(comp);
-        }, 1000);
-      }
-      );
     }
+    return comp;
   }
 
   // TODO: Make it async

@@ -54,17 +54,11 @@ export class AppComponent implements OnInit {
   voteUp() {
     if (!this.voting) {
       this.voting = !this.voting;
-      this.competitorsService.vote(this.competitor1); // TODO: Rendre cet appel async
-      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
-        // this.competitor2 = this.competitorsService.getNextCompetitor();
-        this.competitorsService.getNextCompetitor(this.currentCategory).then(
-          (comp: Competitor) => {
-            this.competitor2 = comp;
-            this.voting = !this.voting;
-          }
-        );
+      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
+        this.competitor2 = this.competitorsService.getNextCompetitor(this.currentCategory);
+        this.voting = !this.voting;
       } else {
-        this.endVote();
+        this.endVote(this.competitor1);
       }
     }
   }
@@ -72,22 +66,17 @@ export class AppComponent implements OnInit {
   voteDown() {
     if (!this.voting) {
       this.voting = !this.voting;
-      this.competitorsService.vote(this.competitor2); // TODO: Rendre cet appel async
-      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) { // TODO: Rendre cet appel async
-        // this.competitor1 = this.competitorsService.getNextCompetitor();
-        this.competitorsService.getNextCompetitor(this.currentCategory).then(
-          (comp: Competitor) => {
-            this.competitor1 = comp;
-            this.voting = !this.voting;
-          }
-        );
+      if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
+        this.competitor1 = this.competitorsService.getNextCompetitor(this.currentCategory);
+        this.voting = !this.voting;
       } else {
-        this.endVote();
+        this.endVote(this.competitor2);
       }
     }
   }
 
-  endVote() {
+  endVote(winner: Competitor) {
+    this.competitorsService.vote(winner);
     if (this.currentCategory === 'male') {
       this.categoryService.finishMaleVote();
     } else {
