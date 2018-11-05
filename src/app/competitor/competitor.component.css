@@ -9,10 +9,8 @@
 } */
 
 .card {
-  margin:auto;
-  display: block;
-  margin-top:10px;
-  max-height: 50%;
+  min-width: 304px;
+  max-width: 304px;
 }
 
 mat-card-header {

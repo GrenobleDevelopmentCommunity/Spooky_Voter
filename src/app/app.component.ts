@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
   }
 
   categoryChoise() {
-    this.chooseCategory = true;
+    this.chooseCategory = false;
+    this.initCompetitors('male');
   }
 
 

@@ -1,8 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf=chooseCategory>
-  <app-category (categoryChoice)="initCompetitors($event)"></app-category>
-</div>
-<div *ngIf=showCompetitors>
-  <app-competitor [competitor]="competitor1" (click)="voteUp()"></app-competitor>
-  <app-competitor [competitor]="competitor2" (click)="voteDown()"></app-competitor>
+<div>
+  <mat-toolbar color="primary">Spooky Voter</mat-toolbar>
+
+  <mat-sidenav-container style="top: 64px !important;" fullscreen>
+    <mat-sidenav-content>
+      <div *ngIf=chooseCategory>
+        <app-category (categoryChoice)="initCompetitors($event)"></app-category>
+      </div>
+      <div style="margin-top: 16px;" fxLayout='column' fxLayoutGap="16px" fxFlexAlign="center" *ngIf="showCompetitors">
+        <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor1" (click)="voteUp()"></app-competitor>
+        <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor2" (click)="voteDown()"></app-competitor>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

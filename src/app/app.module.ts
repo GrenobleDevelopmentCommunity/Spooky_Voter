@@ -6,9 +6,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import { CompetitorComponent } from './competitor/competitor.component';
-import { MatButtonModule } from '@angular/material';
+import {MatButtonModule, MatSidenavContent} from '@angular/material';
 import { CategoryComponent } from './category/category.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MaterialModule} from './material-module';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
-    MatToolbarModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
