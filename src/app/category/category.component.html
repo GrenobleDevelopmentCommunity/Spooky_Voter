@@ -1,16 +1,16 @@
 <div *ngIf="!(disableMaleButton && disableFemaleButton)">
   <div>
     <button class="male" mat-raised-button color="primary" (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
-      MALE
+      <span style="font-size: 32px;">🧙‍</span>MALE
     </button>
   </div>
   <div>
     <button class="female" mat-raised-button color="accent" (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
-      FEMALE
+      <span style="font-size: 32px;">🧝‍‍</span>FEMALE
     </button>
   </div>
 </div>
 
-<div *ngIf="(disableMaleButton && disableFemaleButton)">
+<div *ngIf="(disableMaleButton && disableFemaleButton)" style="text-align: center;">
       <img style="height: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
 </div>
