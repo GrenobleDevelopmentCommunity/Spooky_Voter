@@ -1,26 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Competitor, CompetitorsService } from '../services/competitors.service';
 import { CategoryService } from '../services/category.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, ResolveEnd } from '@angular/router';
+import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-voter',
   templateUrl: './voter.component.html',
   styleUrls: ['./voter.component.css']
 })
-export class VoterComponent implements OnInit {
+export class VoterComponent implements OnInit, OnDestroy {
   competitor1: Competitor;
   competitor2: Competitor;
   voting: boolean;
   currentCategory: string;
+  backSubscription: any;
 
   constructor(private competitorsService: CompetitorsService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
 
   ngOnInit() {
     this.initCompetitors();
+    this.backSubscription = this.router.events.subscribe(
+      (event) => {
+        if (event instanceof ResolveEnd) {
+          console.log('>>>>>>>>>>><<<<<<<<<<<');
+          this.competitorsService.backArrow(this.currentCategory);
+        }
+        // console.log(event);
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this.backSubscription.unsubscribe();
   }
 
   initCompetitors() {

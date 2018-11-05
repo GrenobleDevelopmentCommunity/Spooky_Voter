@@ -85,4 +85,22 @@ export class CompetitorsService {
       return this.female_index < this.FEMALE_COMPETITORS.length;
     }
   }
+
+  // TODO: Not the good logic! (not working)
+  // we should save both current winner and next to retrieve on back
+  backArrow(category: string): void {
+    if (category === 'male') {
+      if (this.male_index <= 2) {
+        this.male_index = 0;
+      } else {
+        this.male_index = this.male_index - 2;
+      }
+    } else if (category === 'female') {
+      if (this.female_index <= 2) {
+        this.female_index = 0;
+      } else {
+        this.female_index = this.female_index - 2;
+      }
+    }
+  }
 }
