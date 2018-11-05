@@ -1,8 +1,3 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div *ngIf=chooseCategory>
-  <app-category (categoryChoice)="initCompetitors($event)"></app-category>
-</div>
-<div *ngIf=showCompetitors>
-  <app-competitor [competitor]="competitor1" (click)="voteUp()"></app-competitor>
-  <app-competitor [competitor]="competitor2" (click)="voteDown()"></app-competitor>
-</div>
+
+<router-outlet></router-outlet>

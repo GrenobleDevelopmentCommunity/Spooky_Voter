@@ -58,13 +58,13 @@ export class CompetitorsService {
     );
   }
 
-  // TODO: Make it async
   vote({ nickname, uid }: Competitor): void {
     console.log(`Voted for ${nickname}`);
     const body = { client_uid: this.uuidService.getUuid(), user_vote: uid };
     this.http.post(environment.apiUrl + '/clients/vote', body).subscribe();
   }
 
+  // TODO: implement logic when using back arrow
   getNextCompetitor(category: string): Competitor {
     let comp: Competitor;
     if (category === 'male') {
@@ -77,7 +77,7 @@ export class CompetitorsService {
     return comp;
   }
 
-  // TODO: Make it async
+
   hasNextCompetitor(category: string): boolean {
     if (category === 'male') {
       return this.male_index < this.MALE_COMPETITORS.length;

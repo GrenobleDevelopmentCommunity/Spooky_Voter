@@ -9,12 +9,15 @@ import { CompetitorComponent } from './competitor/competitor.component';
 import { MatButtonModule } from '@angular/material';
 import { CategoryComponent } from './category/category.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+import { VoterComponent } from './voter/voter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompetitorComponent,
-    CategoryComponent
+    CategoryComponent,
+    VoterComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

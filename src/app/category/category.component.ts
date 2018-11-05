@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CategoryService } from '../services/category.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -12,28 +13,26 @@ export class CategoryComponent implements OnInit {
   disableFemaleButton: boolean;
   emiting = false;
 
-  @Output() categoryChoice = new EventEmitter<string>();
-
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+    private router: Router) { }
 
   ngOnInit() {
     this.disableFemaleButton = this.categoryService.isFemaleVoteFinished();
     this.disableMaleButton = this.categoryService.isMaleVoteFinished();
-
-    // TODO: if both true show end message
   }
 
   initMaleVote(event: Event) {
     if (!this.emiting) {
       console.log('initMaleVote');
-      this.categoryChoice.emit('male');
+      this.router.navigate(['/votes/male']);
+      // this.categoryChoice.emit('male');
     }
   }
 
   initFemaleVote(event: Event) {
     if (!this.emiting) {
-      console.log('initFemaleVote');
-      this.categoryChoice.emit('female');
+      this.router.navigate(['/votes/female']);
+      // this.categoryChoice.emit('female');
     }
   }
 
