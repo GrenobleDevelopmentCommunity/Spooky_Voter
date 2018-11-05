@@ -2,15 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { Competitor, CompetitorsService } from '../services/competitors.service';
 import { CategoryService } from '../services/category.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-voter',
   templateUrl: './voter.component.html',
-  styleUrls: ['./voter.component.css']
+  styleUrls: ['./voter.component.css'],
+  animations: [
+    trigger('avatarChangeF', [
+      transition(':enter, * => 0', []),
+      transition(':increment', [
+        animate('1s', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('avatarChangeS', [
+      transition(':enter, * => 0', []),
+      transition(':increment', [
+        animate('1s', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class VoterComponent implements OnInit {
   competitor1: Competitor;
   competitor2: Competitor;
+  competitorF = 0;
+  competitorS = 0;
   voting: boolean;
   currentCategory: string;
 
@@ -36,6 +53,10 @@ export class VoterComponent implements OnInit {
 
   // TODO: Merge both vote methods
   voteUp() {
+    this.competitorS = this.competitorS + 1;
+  }
+
+  getNextUp(event) {
     if (!this.voting) {
       this.voting = !this.voting;
       if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
@@ -48,6 +69,10 @@ export class VoterComponent implements OnInit {
   }
 
   voteDown() {
+    this.competitorF = this.competitorF + 1;
+  }
+
+  getNextBottom(event) {
     if (!this.voting) {
       this.voting = !this.voting;
       if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
