@@ -1,2 +1,4 @@
-<app-competitor [competitor]="competitor1" (click)="voteUp()"></app-competitor>
-<app-competitor [competitor]="competitor2" (click)="voteDown()"></app-competitor>
+<div style="margin-top: 16px;" fxLayout='column' fxLayoutGap="16px" fxFlexAlign="center">
+  <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor1" (click)="voteUp()"></app-competitor>
+  <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor2" (click)="voteDown()"></app-competitor>
+</div>

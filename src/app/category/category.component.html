@@ -1,5 +1,4 @@
 <div *ngIf="!(disableMaleButton && disableFemaleButton)">
-  <mat-toolbar color="primary">Choose a category</mat-toolbar>
   <div>
     <button class="male" mat-raised-button color="primary" (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
       MALE
@@ -13,12 +12,5 @@
 </div>
 
 <div *ngIf="(disableMaleButton && disableFemaleButton)">
-  <mat-toolbar color="primary">Thanks for your votes</mat-toolbar>
-  <mat-card>
-    <mat-card-content>
-      <img style="width: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
-    </mat-card-content>
-
-  </mat-card>
-
+      <img style="height: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
 </div>
