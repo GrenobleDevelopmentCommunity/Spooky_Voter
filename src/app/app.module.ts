@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { CompetitorComponent } from './competitor/competitor.component';
 import { MatButtonModule } from '@angular/material';
 import { CategoryComponent } from './category/category.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { CategoryComponent } from './category/category.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,

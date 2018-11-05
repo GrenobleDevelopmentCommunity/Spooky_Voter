@@ -2,15 +2,19 @@
   width: 400px;
 } */
 
-.mat-card-image {
+/* img {
   /* max-height: 200%;
   width: auto; */
-
-}
+  /*object-fit: cover;
+} */
 
 .card {
   margin:auto;
   display: block;
   margin-top:10px;
   max-height: 50%;
+}
+
+mat-card-header {
+  margin-bottom: 17px;
 }
