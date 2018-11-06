@@ -28,10 +28,15 @@ export class VoterComponent implements OnInit, OnDestroy {
     this.backSubscription = this.router.events.subscribe(
       (event) => {
         if (event instanceof ResolveEnd) {
-          console.log('>>>>>>>>>>><<<<<<<<<<<');
-          this.competitorsService.backArrow(this.currentCategory);
+          let itemName: string;
+          if (this.currentCategory === 'male') {
+            itemName = 'm';
+          } else {
+            itemName = 'f';
+          }
+          localStorage.setItem('c1' + itemName, JSON.stringify(this.competitor1));
+          localStorage.setItem('c2' + itemName, JSON.stringify(this.competitor2));
         }
-        // console.log(event);
       }
     );
   }

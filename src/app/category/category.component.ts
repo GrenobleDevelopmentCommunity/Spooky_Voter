@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { Router } from '@angular/router';
 
@@ -34,6 +34,17 @@ export class CategoryComponent implements OnInit {
       this.router.navigate(['/votes/female']);
       // this.categoryChoice.emit('female');
     }
+  }
+
+  allVotesDone(): boolean {
+    const res = this.disableFemaleButton && this.disableMaleButton;
+    if (res) {
+      localStorage.removeItem('c1m');
+      localStorage.removeItem('c2m');
+      localStorage.removeItem('c1f');
+      localStorage.removeItem('c2f');
+    }
+    return res;
   }
 
 }

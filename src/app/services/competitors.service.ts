@@ -66,6 +66,10 @@ export class CompetitorsService {
 
   // TODO: implement logic when using back arrow
   getNextCompetitor(category: string): Competitor {
+    const backArrow = this.backArrow(category);
+    if (backArrow) {
+      return backArrow;
+    }
     let comp: Competitor;
     if (category === 'male') {
       comp = this.MALE_COMPETITORS[this.male_index];
@@ -88,19 +92,27 @@ export class CompetitorsService {
 
   // TODO: Not the good logic! (not working)
   // we should save both current winner and next to retrieve on back
-  backArrow(category: string): void {
+  backArrow(category: string): Competitor {
+    let itemName: string;
     if (category === 'male') {
-      if (this.male_index <= 2) {
-        this.male_index = 0;
-      } else {
-        this.male_index = this.male_index - 2;
-      }
+      itemName = 'm';
     } else if (category === 'female') {
-      if (this.female_index <= 2) {
-        this.female_index = 0;
-      } else {
-        this.female_index = this.female_index - 2;
-      }
+      itemName = 'f';
+    } else {
+      return null;
     }
+
+    const c1 = JSON.parse(localStorage.getItem('c1' + itemName)) as Competitor;
+    if (c1) {
+      localStorage.removeItem('c1' + itemName);
+      return c1;
+    }
+    const c2 = JSON.parse(localStorage.getItem('c2' + itemName)) as Competitor;
+    if (c2) {
+      localStorage.removeItem('c2' + itemName);
+      return c2;
+    }
+
+    return null;
   }
 }
