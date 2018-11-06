@@ -64,13 +64,28 @@ export class VoterComponent implements OnInit, OnDestroy {
 
   initCompetitors() {
     // TODO: Check this somewhere else
+    // Route guard ?
     this.currentCategory = this.route.snapshot.paramMap.get('category');
     if (!(this.currentCategory === 'male' || this.currentCategory === 'female')) {
       this.router.navigate(['/category']);
     }
+    if ((this.categoryService.isFemaleVoteFinished() && this.currentCategory === 'female')
+      || (this.categoryService.isMaleVoteFinished() && this.currentCategory === 'male')) {
+      this.router.navigate(['/category']);
+    }
+
+
     // TODO why pass 2 times ?
-    this.competitor1 = { uid: '', picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg', nickname: '👻 Loading 👻' };
-    this.competitor2 = { uid: '', picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg', nickname: '👻 Loading 👻' };
+    this.competitor1 = {
+      uid: '',
+      picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg',
+      nickname: '👻 Loading 👻'
+    };
+    this.competitor2 = {
+      uid: '',
+      picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg',
+      nickname: '👻 Loading 👻'
+    };
   }
 
 
