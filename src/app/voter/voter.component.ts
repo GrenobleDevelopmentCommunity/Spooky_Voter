@@ -1,18 +1,35 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Competitor, CompetitorsService } from '../services/competitors.service';
 import { CategoryService } from '../services/category.service';
-import { Router, ActivatedRoute, NavigationEnd, ResolveEnd } from '@angular/router';
+
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Router, ActivatedRoute, ResolveEnd } from '@angular/router';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-voter',
   templateUrl: './voter.component.html',
-  styleUrls: ['./voter.component.css']
+  styleUrls: ['./voter.component.css'],
+  animations: [
+    trigger('avatarChangeF', [
+      transition(':enter, * => 0', []),
+      transition(':increment', [
+        animate('1s', style({ opacity: 0 }))
+      ])
+    ]),
+    trigger('avatarChangeS', [
+      transition(':enter, * => 0', []),
+      transition(':increment', [
+        animate('1s', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class VoterComponent implements OnInit, OnDestroy {
   competitor1: Competitor;
   competitor2: Competitor;
+  competitorF = 0;
+  competitorS = 0;
   voting: boolean;
   currentCategory: string;
   backSubscription: any;
@@ -51,13 +68,18 @@ export class VoterComponent implements OnInit, OnDestroy {
     if (!(this.currentCategory === 'male' || this.currentCategory === 'female')) {
       this.router.navigate(['/category']);
     }
-    this.competitor1 = this.competitorsService.getNextCompetitor(this.currentCategory);
-    this.competitor2 = this.competitorsService.getNextCompetitor(this.currentCategory);
+    // TODO why pass 2 times ?
+    this.competitor1 = { uid: '', picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg', nickname: '👻 Loading 👻' };
+    this.competitor2 = { uid: '', picture_link: 'http://www.quickmeme.com/img/8e/8ecae9bfdbba971f324d27a30688def1566bf088751bcc814ebc5a7f0d4d3bcc.jpg', nickname: '👻 Loading 👻' };
   }
 
 
   // TODO: Merge both vote methods
   voteUp() {
+    this.competitorS = this.competitorS + 1;
+  }
+
+  getNextUp(event) {
     if (!this.voting) {
       this.voting = !this.voting;
       if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
@@ -70,6 +92,10 @@ export class VoterComponent implements OnInit, OnDestroy {
   }
 
   voteDown() {
+    this.competitorF = this.competitorF + 1;
+  }
+
+  getNextBottom(event) {
     if (!this.voting) {
       this.voting = !this.voting;
       if (this.competitorsService.hasNextCompetitor(this.currentCategory)) {
@@ -82,10 +108,11 @@ export class VoterComponent implements OnInit, OnDestroy {
   }
 
   endVote(winner: Competitor) {
-    this.competitorsService.vote(winner);
-    if (this.currentCategory === 'male') {
+    if (this.currentCategory === 'male' && !localStorage.getItem('male')) {
+      this.competitorsService.vote(winner);
       this.categoryService.finishMaleVote();
-    } else {
+    } else if (this.currentCategory === 'female' && !localStorage.getItem('female')) {
+      this.competitorsService.vote(winner);
       this.categoryService.finishFemaleVote();
     }
     this.router.navigate(['/category']);

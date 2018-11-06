@@ -11,6 +11,8 @@
 .card {
   min-width: 304px;
   max-width: 304px;
+  background: #212121;
+  color: #FAFAFA;
 }
 
 mat-card-header {
