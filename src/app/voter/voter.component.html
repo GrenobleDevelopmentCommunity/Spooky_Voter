@@ -1,11 +1,6 @@
-<div style="margin-top: 16px;"
-     fxLayout='row'
-     fxLayout.sm="column"
-     fxLayout.xs="column"
-     fxLayoutGap="16px"
-     fxFlexAlign="center"
-     fxLayoutAlign="center center">
-  <app-competitor
+<div style="margin-top: 16px;" fxLayout='row' fxLayout.sm="column" fxLayout.xs="column" fxLayoutGap="16px" fxFlexAlign="center"
+  fxLayoutAlign="center center">
+  <!-- <app-competitor
                   fxLayout='column'
                   fxFlexAlign="center"
                   [@avatarChangeF]="competitorF"
@@ -18,4 +13,8 @@
                   (@avatarChangeS.done)="getNextUp($event)"
                   [competitor]="competitor2"
                   (click)="voteDown()"></app-competitor>
+</div> -->
+
+  <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor1" (click)="getNextUp($event)"></app-competitor>
+  <app-competitor fxLayout='column' fxFlexAlign="center" [competitor]="competitor2" (click)="getNextBottom($event)"></app-competitor>
 </div>

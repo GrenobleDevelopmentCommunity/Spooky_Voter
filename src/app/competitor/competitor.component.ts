@@ -13,15 +13,15 @@ export class CompetitorComponent implements OnInit, OnDestroy, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    console.log('onInit');
+    // console.log('onInit');
   }
 
   ngOnDestroy(): void {
-    console.log('OnDestroy');
+    // console.log('OnDestroy');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.competitor);
+    // console.log(this.competitor);
   }
 
 

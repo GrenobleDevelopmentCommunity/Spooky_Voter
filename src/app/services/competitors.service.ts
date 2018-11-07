@@ -18,48 +18,62 @@ export class CompetitorsService {
   // TODO: load data from server
   MALE_COMPETITORS: Competitor[] = [
     // tslint:disable:max-line-length
-    { uid: 'blop', nickname: 'Vasyl', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
-    { uid: 'blop', nickname: 'Max', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
-    { uid: 'blop', nickname: 'Seb', picture_link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg' },
-    { uid: 'blop', nickname: 'Anton', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
-    { uid: 'blop', nickname: 'Raph', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Vasyl', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Max', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Seb', picture_link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Anton', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Raph', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
   ];
   male_index = 0;
 
   FEMALE_COMPETITORS: Competitor[] = [
     // tslint:disable:max-line-length
-    { uid: 'blop', nickname: 'Oriane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
-    { uid: 'blop', nickname: 'Heloise', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
-    { uid: 'blop', nickname: 'Margo', picture_link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg' },
-    { uid: 'blop', nickname: 'Marjo', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
-    { uid: 'blop', nickname: 'Romane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Oriane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZxbUNPj9mXo63Zy8e8reBQRBfnZa5FgqvByMXc7GVotGwugC8' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Heloise', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Margo', picture_link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/250px-Gatto_europeo4.jpg' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Marjo', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa4e2VF6cfou9oL0cc5OAzVTEbmAgFjIW2r-7lTkpOljG9k38N' },
+    // { uid: '6be724d7-b4cc-1311-be98-4c0493c2f1d9', nickname: 'Romane', picture_link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8Jz9HWznGSe5UmiA7aTpyr4h0ZbU6kMaNVtLoe1bzXJePHXG' }
   ];
   female_index = 0;
 
   constructor(private http: HttpClient, private uuidService: UuidService) {
-    this.getCompetitors();
+  }
+
+  private shuffle(arr) {
+    let i,
+      j,
+      temp;
+    for (i = arr.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
   }
 
   // TODO: REFACTOR
   getCompetitors(): void {
     this.http.get(environment.apiUrl + '/users/male').subscribe(
       (data) => {
-        data['body'].forEach(male => {
+        this.shuffle(data['body']).forEach(male => {
           this.MALE_COMPETITORS.push({ uid: male['uid'], nickname: male['nickname'], picture_link: male['photo_link'] });
         });
+        console.log('male data fetched');
       }
     );
     this.http.get(environment.apiUrl + '/users/female').subscribe(
       (data) => {
-        data['body'].forEach(female => {
+        this.shuffle(data['body']).forEach(female => {
           this.FEMALE_COMPETITORS.push({ uid: female['uid'], nickname: female['nickname'], picture_link: female['photo_link'] });
         });
+        console.log('female data fetched');
       }
     );
   }
 
   vote({ nickname, uid }: Competitor): void {
-    console.log(`Voted for ${nickname}`);
+    // console.log(`Voted for ${nickname}`);
     const body = { client_uid: this.uuidService.getUuid(), user_vote: uid };
     this.http.post(environment.apiUrl + '/clients/vote', body).subscribe();
   }

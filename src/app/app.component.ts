@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UuidService } from './services/uuid.service';
+import { CompetitorsService } from './services/competitors.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import { UuidService } from './services/uuid.service';
 export class AppComponent implements OnInit {
   title = 'Spooky-Voter';
 
-  constructor(private uuidService: UuidService) { }
+  constructor(private uuidService: UuidService,
+    private competitorsService: CompetitorsService) {
+    this.competitorsService.getCompetitors();
+  }
 
   ngOnInit(): void {
 

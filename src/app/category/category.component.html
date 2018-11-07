@@ -1,16 +1,30 @@
-<div *ngIf="!(disableMaleButton && disableFemaleButton)">
-  <div>
-    <button class="male" mat-raised-button color="primary" (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
-      <span style="font-size: 32px;">🧙‍</span>MALE
-    </button>
+<div *ngIf="voteOpened">
+  <div *ngIf="!(disableMaleButton && disableFemaleButton)">
+    <div>
+      <button class="male" mat-raised-button color="primary" (click)="initMaleVote($event)" [disabled]='disableMaleButton'>
+        <span style="font-size: 32px;">🧙‍</span>MALE
+      </button>
+    </div>
+    <div>
+      <button class="female" mat-raised-button color="accent" (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
+        <span style="font-size: 32px;">🧝‍‍</span>FEMALE
+      </button>
+    </div>
   </div>
-  <div>
-    <button class="female" mat-raised-button color="accent" (click)="initFemaleVote($event)" [disabled]='disableFemaleButton'>
-      <span style="font-size: 32px;">🧝‍‍</span>FEMALE
-    </button>
+
+  <div *ngIf="allVotesDone()">
+    <mat-card>
+      <mat-card-content>
+        <img style="height: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 
-<div *ngIf="allVotesDone()">
-  <img style="height: 100%" src="https://media.giphy.com/media/129rZZ3a4anp0Q/giphy.gif">
+<div *ngIf="!(voteOpened)">
+  <mat-card>
+    <mat-card-content>
+      <img src="https://media.giphy.com/media/IZcjxKQNbOOly/giphy.gif">
+    </mat-card-content>
+  </mat-card>
 </div>
